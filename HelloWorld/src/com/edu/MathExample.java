@@ -7,7 +7,7 @@ public class MathExample {
  
 	 Scanner scn = new Scanner(System.in);
 	 
-	 double num1, num2, num3, num4, num5, num6;
+	 double num1, num2, num3, num4, num5, num6, num7;
 	 
 	 System.out.println("첫번쨰 수를 입력해주세요");
 	 num1 = scn.nextDouble();
@@ -19,12 +19,13 @@ public class MathExample {
 	 num4 = num1 -num2;
 	 num5 = num1 *num2;
 	 num6 = num1 /num2;
+	 num7 = num1 %num2;
 	 
 	 System.out.println("두 수의 합은 " + num3 + " 입니다");
 	 System.out.println("두 수의 차는 " + num4 + " 입니다");
 	 System.out.println("두 수의 곱은 " + num5 + " 입니다");
 	 System.out.println("두 수를 나눈 몫은 " + num6 + " 입니다");
-	 
+	 System.out.println("두 수를 나눈 나머지는 " + num7 + " 입니다");
 	 
 	 scn.close();
  }
