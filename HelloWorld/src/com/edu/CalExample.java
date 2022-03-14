@@ -10,10 +10,10 @@ public class CalExample {
 		
 		
 		System.out.println("초 단위 입력(ex: 150)");
-		int se=c = scn.nextInt();
+		int sec = scn.nextInt();
 
 		int hour = (sec / 3600);
-		int hour2 = ( sec % 3600 );
+		int hour2 = (sec % 3600 );
 				int minute = hour2 / 60;
 				int second = hour2  % 60;
 			
