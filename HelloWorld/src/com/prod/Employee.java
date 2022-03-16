@@ -51,7 +51,7 @@ public class Employee {
 	public int getSalary() {
 		return this.salary;
 	}
-	
+
 	public String getEmpInfo() {
 		String result = this.employeeName + "의 부서는 " //
 				+ this.department + "이고 직무는 " + this.job //
