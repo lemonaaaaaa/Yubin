@@ -10,7 +10,7 @@ public class WeekExample {
 		Calendar day = Calendar.getInstance();
 		System.out.println(day.get(Calendar.DAY_OF_WEEK));
 
-		switch(day.get(Calendar.DAY_OF_WEEK))
+		switch(day.get(Calendar.DAY_OF_WEEK)) {
 		case1: System.out.println(Week.SUNDAY);
 		break;
 		case2: System.out.println(Week.MONDAY);
@@ -25,6 +25,6 @@ public class WeekExample {
 		break;
 		case7: System.out.println(Week.SATDAY);
 		break;
-
+		}
 	}
 }

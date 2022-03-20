@@ -18,10 +18,10 @@ public class Exam02 {
 		
 		if(n1 > n2 ) {
 			nanugi = (double) n1/n2;
-			System.out.printf("%.2f",nanugi);
+			System.out.printf("%.1f",nanugi);
 		}else {
 			nanugi = (double) n2/n1;
-			System.out.printf("%.2f",nanugi);
+			System.out.printf("%.1f",nanugi);
 			
 			
 		}

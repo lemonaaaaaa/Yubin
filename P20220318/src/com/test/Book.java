@@ -1,8 +1,52 @@
 package com.test;
 
 public class Book {
- public static void main(String[] args) {
-	 System.out.println("아마도 저는 깡통인가봅니다 깡깡");
-	System.out.println("교수님 아프지마세용 ㅠㅅㅠ");
-}
+
+	private String bookName;
+	private String bookWriter;
+	private String bookPrint;
+	private int bookPrice;
+
+	public Book(String bookName, String bookWriter, String bookPrint, int bookPrice) {
+		super();
+		this.bookName = bookName;
+		this.bookWriter = bookWriter;
+		this.bookPrint = bookPrint;
+		this.bookPrice = bookPrice;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public String getBookWriter() {
+		return bookWriter;
+	}
+
+	public void setBookWriter(String bookWriter) {
+		this.bookWriter = bookWriter;
+	}
+
+	public String getBookPrint() {
+		return bookPrint;
+	}
+
+	public void setBookPrint(String bookPrint) {
+		this.bookPrint = bookPrint;
+	}
+
+	public int getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(int bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+
+	
+
 }
