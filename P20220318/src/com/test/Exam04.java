@@ -8,6 +8,8 @@ public class Exam04 {
 		int[] ary = new int[5];
 		for (int i = 0; i < 5; i++) {
 			ary[i] = (int) (Math.random() * 6) + 1;
+		
+			
 			if (ary[i] > 5) {
 				System.out.println("가장 큰 수는 6입니다");
 				break;
