@@ -1,10 +1,27 @@
 package com.edu.except;
 
 import java.util.InputMismatchException;
+
+//클래스 A 클래스 B~~~~~~~~~~~Z
+//메인메소드를 담고있는 main 메소드 포함(실행클래스) 나머지는 참조(참고 인스턴스 포함).
+
 import java.util.Scanner;
 
-public class Library {
-	public static void main(String[] args) {
+public class LibraryExe {
+	private static LibraryExe singleton = new LibraryExe();
+	
+	private LibraryExe() {
+		
+	}
+	public static LibraryExe getInstance() {
+		return singleton;
+	}
+		
+	
+	public void run(){
+	
+	
+	//public static void main(String[] args) {
 		// 책 제목, 저자, 가격을 입력해서 저장시키는것.
 		// 리스트 보여주기.
 		Scanner scn = new Scanner(System.in);
@@ -78,5 +95,5 @@ public class Library {
 
 		}
 	}
+	}
 
-}
