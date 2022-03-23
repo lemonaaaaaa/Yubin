@@ -3,9 +3,9 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 
-Class String2 extends String{
+//class String2 extends String{
 	//public final String{} //상속불가능한 클래스를 표현할때 파이널.
-}
+//}
 
 public class ExceptionExample2 {
 	public static void main(String[] args) {
@@ -36,12 +36,12 @@ public class ExceptionExample2 {
 			e.printStackTrace();
 		}
 
-		String num1 = "백";// 숫자문자열
-		String num2 = "이백";
-		//int num1, num2;
+		String nums1 = "백";// 숫자문자열
+		String nums2 = "이백";
+		int num1 =0 , num2 = 0;
 		try {
-			int num1 = Integer.parseInt(nums1);// int 변환
-			int num2 = Integer.parseInt(nums2);
+			 num1 = Integer.parseInt(nums1);// int 변환
+			num2 = Integer.parseInt(nums2);
 			str.charAt(0);
 		} catch (NumberFormatException e) {
 			num1 = 0;
@@ -53,7 +53,11 @@ public class ExceptionExample2 {
 		System.out.println(num2);
 		System.out.println(num1 + " + " + num2 + " = " + (num1 + num2));
 
-		showError();
+		try {
+			showError();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
 		System.out.println("프로그램 꺼 졍 ");
 
