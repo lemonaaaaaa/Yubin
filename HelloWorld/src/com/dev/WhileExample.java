@@ -9,25 +9,25 @@ public class WhileExample {
 			System.out.println("i의 값=>" + i);
 
 		}
-
-		// while
-		int num = 0;
-		while (true) {
-			System.out.println("num의 값=>" + num);
-			num++;
-			if (num > 5) {
-				break; // 반복문을 빠져나옴
-			}
-		}
-
-		while (true) {
-			int rand = (int) (Math.random() * 10) + 1; // 1~10중 임의의 값 뽑다가
-			System.out.println("임의의 생성된 값 : " + rand);
-			if (rand == 8) { // 8이 되면 반복문을 나오게 됨
-				break;
-			}
-
-		}
+//
+//		// while
+//		int num = 0;
+//		while (true) {
+//			System.out.println("num의 값=>" + num);
+//			num++;
+//			if (num > 5) {
+//				break; // 반복문을 빠져나옴
+//			}
+//		}
+//
+//		while (true) {
+//			int rand = (int) (Math.random() * 10) + 1; // 1~10중 임의의 값 뽑다가
+//			System.out.println("임의의 생성된 값 : " + rand);
+//			if (rand == 8) { // 8이 되면 반복문을 나오게 됨
+//				break;
+//			}
+//
+//		}
 
 		// While로 수를 맞출때 까지 계속 반복 실행
 		Scanner scn = new Scanner(System.in);

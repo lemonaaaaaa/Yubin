@@ -7,7 +7,7 @@ public class StringTrimExample {
 		String tel3 = "    1234    ";
 		
 		String tel = tel1.trim() + tel2.trim() + tel3.trim();
-		System.out.println(tel);
+		System.out.println(tel);//공백제거
 		
 
 	}

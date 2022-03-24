@@ -12,4 +12,4 @@ public class StringValueOFExample {
 
 	}
 
-}
+}//ValueOf는 ()안의 값을 대응하는 값으로 바꿔준다. 타입상관없이

@@ -18,7 +18,7 @@ public class ArrayExample8 {
 
 		if (numbers[0] > numbers[1]) {
 			numbers[0] = numbers[1];
-			numbers[1] = cent;
+			numbers[1] = cent;//이해햇으면됏다
 
 			System.out.println(numbers[0] + "그 다음" + cent + "입니다.");
 

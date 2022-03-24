@@ -15,4 +15,4 @@ public class StringLowerUpperCaseExample {
 		System.out.println(str1.equalsIgnoreCase(str2));
 	}
 
-}
+}//문자열 소문자로 대문자로

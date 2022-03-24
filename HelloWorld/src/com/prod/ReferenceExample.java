@@ -11,7 +11,7 @@ public class ReferenceExample {
 		// int, double, (byte, short, long, float, char)
 		System.out.println(num1);
 		System.out.println(num2);
-		//얘네는 == 로 출력해도 ture로 나옴
+		//얘네는 == 로 출력해도 true로 나옴
 		
 		
 		String str1 = new String("hello");

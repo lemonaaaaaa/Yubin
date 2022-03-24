@@ -7,7 +7,7 @@ public class StringSubstringExample {
 		String firstNum = ssn.substring(0, 6);
 		System.out.println(firstNum);
 		
-		String secondNum = ssn.substring(7);
+		String secondNum = ssn.substring(7);//문자열의 7번 이후부터 출력
 		System.out.println(secondNum);
 	}
 
