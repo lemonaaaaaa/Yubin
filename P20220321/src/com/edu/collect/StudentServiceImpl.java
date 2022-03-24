@@ -29,6 +29,20 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 
+	@Override
+	public void studentdelete(int sno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<Student> searchStudent(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 	
 
