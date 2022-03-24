@@ -33,7 +33,7 @@ public class IDoNotKonwWhatImDoing {
 		//근데 솔직히 내가 잘못했다. 모르면 집에가서 복습해야지 왜 놀고자빠졌노
 		//역시 한국어가 쓰기 편하네 근데 너무 말투가 거칠어진다
 		//It's okay. seokj said us "IT is a technition" <wrong spelling? idk
-		
+		//It might be right. because he is a 
 		
 		
 	}
