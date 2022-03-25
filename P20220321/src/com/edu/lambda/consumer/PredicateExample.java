@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-class Student {
+public class Student {
    String name;
    String gender;
    int score;

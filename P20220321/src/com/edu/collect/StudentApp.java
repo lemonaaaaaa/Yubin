@@ -18,7 +18,7 @@ public class StudentApp {
 	}
 
 	// 멤버클래스 생성.
-	class StudentServiceImpl implements StudentService {
+	class StudentServiceFile implements StudentService {
 
 		@Override
 		public void insertStudent(Student student) {
@@ -34,6 +34,16 @@ public class StudentApp {
 				}
 			}
 			return null;
+		}
+
+		
+		
+		
+		
+		@Override
+		public void saveToFile() {
+			// TODO Auto-generated method stub
+			
 		}
 
 		@Override
@@ -69,7 +79,7 @@ public class StudentApp {
 			}
 		}
 
-		@Override
+		@Override9-
 		public List<Student> searchStudent(String name) {
 			List<Student> searchList = new ArrayList<Student>();
 			// 찾았다고 종료x

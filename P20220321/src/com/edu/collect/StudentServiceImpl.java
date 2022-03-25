@@ -11,6 +11,20 @@ public class StudentServiceImpl implements StudentService {
 
 
 	@Override
+	public void saveToFile() {
+		try {
+			FileWirter fw = new FileWriter("studentList.data");
+			BufferedWriter bw = new BufferWriter(fw);
+			
+			for(Student stud : list) {
+				bw.write(stud.getStudentNo() +", " + stud.getStudentNa()//
+				+bw.write(stud.getStudentKo() + ", " + stud.getStudentEn());
+			}
+		}
+	}
+
+
+	@Override
 	public Student getStudent(int sno) {
 		
 		return null;
