@@ -1,67 +1,99 @@
 package com.edu.collect;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceFile implements StudentService {
 
-	@Override
-	public void insertStudent(Student student) {
-		
-	}
+	List<Student> students;
+	File file;
 
-
-	@Override
 	public void saveToFile() {
 		try {
-			FileWirter fw = new FileWriter("studentList.data");
-			BufferedWriter bw = new BufferWriter(fw);
-			
-			for(Student stud : list) {
-				bw.write(stud.getStudentNo() +", " + stud.getStudentNa()//
-				+bw.write(stud.getStudentKo() + ", " + stud.getStudentEn());
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			for (Student student : students) {
+				bw.write(student.getStudentNo() + " " + student.getName() + " "//
+						+ student.getStudentEn() + " " + student.getStudentKo() + "\n");
 			}
+
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
+	public StudentServiceFile() {
+
+		students = new ArrayList<Student>();
+		file = new File("student.dat");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		String readBuffer = null;
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+
+			while ((readBuffer = br.readLine()) != null) {
+//				System.out.println(readBuffer);
+				String[] contents = readBuffer.split(" ");
+				students.add(new Student(Integer.parseInt(contents[0]), contents[1]//
+						, Integer.parseInt(contents[2]), Integer.parseInt(contents[3])));
+			}
+
+			fr.close();
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void insertStudent(Student student) {
+		students.add(student);
+	}
 
 	@Override
 	public Student getStudent(int sno) {
-		
 		return null;
 	}
 
 	@Override
 	public List<Student> studentList() {
-		
-		return null;
+		return students;
 	}
 
 	@Override
 	public void modifyStudent(Student student) {
-		
-		return;
-	}
 
+	}
 
 	@Override
-	public void studentdelete(int sno) {
-		// TODO Auto-generated method stub
+	public void removeStudent(int srn) {
 		
 	}
-
 
 	@Override
 	public List<Student> searchStudent(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
-	
-
-
-	
-	
 
 }

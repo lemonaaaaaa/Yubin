@@ -1,9 +1,10 @@
 package com.edu.lambda.consumer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Student {
+ class Student {
    String name;
    String gender;
    int score;

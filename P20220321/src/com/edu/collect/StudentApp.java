@@ -79,7 +79,7 @@ public class StudentApp {
 			}
 		}
 
-		@Override9-
+		@Override
 		public List<Student> searchStudent(String name) {
 			List<Student> searchList = new ArrayList<Student>();
 			// 찾았다고 종료x
