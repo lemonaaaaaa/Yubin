@@ -1,6 +1,6 @@
 package com.edu.collect;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class StudentApp {
 	}
 
 	// 멤버클래스 생성.
-	class StudentServiceFile implements StudentService {
+	class StudentServiceImpl implements StudentService {
 
 		@Override
 		public void insertStudent(Student student) {
@@ -36,15 +36,12 @@ public class StudentApp {
 			return null;
 		}
 
-		
-		
-		
-		
 		@Override
 		public void saveToFile() {
-			// TODO Auto-generated method stub
-			
+			System.exit(0);
+
 		}
+		
 
 		@Override
 		public List<Student> studentList() {// 전체 학생 정보를 가져오게따
@@ -64,15 +61,14 @@ public class StudentApp {
 		}
 
 		@Override
-		public void studentdelete(int sno) {
+		public void removeStudent(int srn) {
 			System.out.println("없애버릴 학생의 번호를 입력하거라");
-			sno = scn.nextInt();
+			srn = scn.nextInt();
 			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getStudentNo() == sno) {
+				if (list.get(i).getStudentNo() == srn) {
 					list.remove(i);
-
 					System.out.println("이제 그런 학생은 없다!");
-				} else if (list.get(i).getStudentNo() != sno) {
+				} else if (list.get(i).getStudentNo() != srn) {
 					System.out.println("그런 학생은 애초에 없어따");
 				}
 
@@ -113,9 +109,12 @@ public class StudentApp {
 
 	}
 
+//메인기능 담당
 	public void execute() {
 		StudentService service = new StudentServiceImpl();
-		// 메뉴 : 1.추가 2.리스트 3.한건조회. 4.수정 9.종료
+		service = new StudentServiceFile();
+		// service = new StudentServiceOracle();
+		// 메뉴 : 1.추가 2.리스트 3.한건조회. 4.수정 5.삭제 9.종료
 		while (true) {
 			System.out.println("메뉴 : 1.추가 2.리스트 3.한 건 조회. 4.수정 5.삭제 6.이름조회 9.종료");
 			System.out.println("선택 >>");
@@ -163,11 +162,11 @@ public class StudentApp {
 				service.modifyStudent(s1);
 				System.out.println("고쳐줘따");
 			} else if (menu == 5) {
-				int sno = 0;
-				service.studentdelete(sno);
-
-			} else if (menu == 6) {
-
+				int srn = 0;
+				service.removeStudent(srn);
+			}
+			
+			 else if (menu == 6) {
 				System.out.println("찾는 학생의 이름을 입력하라");
 				String name = scn.next();
 				List<Student> list = service.searchStudent(name);
@@ -176,6 +175,7 @@ public class StudentApp {
 				}
 
 			} else if (menu == 9) {
+				service.saveToFile();
 				System.out.println("꺼지겟따");
 				break;
 

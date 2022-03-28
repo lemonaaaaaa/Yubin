@@ -12,9 +12,10 @@ public interface StudentService {
 
 	public void modifyStudent(Student student); // 한건수정
 
-	public void studentdelete(int sno);//
 
 	public List<Student> searchStudent(String name); //이름조회
 
 	public void saveToFile();
+
+	void removeStudent(int srn);
 }
