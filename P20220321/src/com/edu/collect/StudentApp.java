@@ -10,12 +10,12 @@ public class StudentApp {
 	Scanner scn = new Scanner(System.in);
 
 	// 생성자
-	public StudentApp() {
-		list.add(new Student(101, "가희가희", 82, 97));
-		list.add(new Student(102, "해정해정", 82, 24));
-		list.add(new Student(103, "수연수연", 83, 75));
-		list.add(new Student(104, "수연수연", 83, 75));
-	}
+//	public StudentApp() {
+//		list.add(new Student(101, "가희가희", 82, 97));
+//		list.add(new Student(102, "해정해정", 82, 24));
+//		list.add(new Student(103, "수연수연", 83, 75));
+//		list.add(new Student(104, "수연수연", 83, 75));
+//	}
 
 	// 멤버클래스 생성.
 	class StudentServiceImpl implements StudentService {

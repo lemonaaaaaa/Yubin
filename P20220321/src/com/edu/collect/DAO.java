@@ -22,7 +22,7 @@ public class DAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("===== 연결 =====");
+		System.out.println("======== 연결 ========");
 		return conn;
 	}
 	

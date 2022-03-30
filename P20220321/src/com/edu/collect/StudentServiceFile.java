@@ -16,7 +16,7 @@ public class StudentServiceFile implements StudentService {
 //		
 	// 생성자
 	// 기본생성자에 파일에 저장되어 있는 정보를 읽어서 ~~
-	public StudentServiceFile() {
+	
 		try {
 			FileReader fr = new FileReader("student.data");
 			BufferedReader br = new BufferedReader(fr);
