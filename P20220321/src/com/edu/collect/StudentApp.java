@@ -41,7 +41,6 @@ public class StudentApp {
 			System.exit(0);
 
 		}
-		
 
 		@Override
 		public List<Student> studentList() {// 전체 학생 정보를 가져오게따
@@ -61,14 +60,14 @@ public class StudentApp {
 		}
 
 		@Override
-		public void removeStudent(int srn) {
+		public void removeStudent(String sna) {
 			System.out.println("없애버릴 학생의 번호를 입력하거라");
-			srn = scn.nextInt();
+			sna = scn.next();
 			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getStudentNo() == srn) {
+				if (list.get(i).getStudentNa() == sna) {
 					list.remove(i);
 					System.out.println("이제 그런 학생은 없다!");
-				} else if (list.get(i).getStudentNo() != srn) {
+				} else if (list.get(i).getStudentNa() != sna) {
 					System.out.println("그런 학생은 애초에 없어따");
 				}
 
@@ -113,6 +112,7 @@ public class StudentApp {
 	public void execute() {
 		StudentService service = new StudentServiceImpl();
 		service = new StudentServiceFile();
+		service = new StudentServiceOracle();
 		// service = new StudentServiceOracle();
 		// 메뉴 : 1.추가 2.리스트 3.한건조회. 4.수정 5.삭제 9.종료
 		while (true) {
@@ -161,12 +161,18 @@ public class StudentApp {
 				Student s1 = new Student(StudentNo, null, StudentEn, StudentKo);
 				service.modifyStudent(s1);
 				System.out.println("고쳐줘따");
-			} else if (menu == 5) {
-				int srn = 0;
-				service.removeStudent(srn);
-			}
 			
-			 else if (menu == 6) {
+			} else if (menu == 5) {
+				System.out.println("없애려는 학생의 이름를 입력하라");
+				String sna = scn.next();
+				List<Student> list = service.searchStudent(sna);
+				for (Student s : list) {
+					System.out.println(s.toString());
+				}
+				service.removeStudent(sna);
+			}
+
+			else if (menu == 6) {
 				System.out.println("찾는 학생의 이름을 입력하라");
 				String name = scn.next();
 				List<Student> list = service.searchStudent(name);

@@ -6,16 +6,16 @@ public interface StudentService {
 
 	public void insertStudent(Student student); // 입력
 
-	public Student getStudent(int sno);// 한 건 조호ㅣ
+	public Student getStudent(int sno);// 번호로 조회
 
 	public List<Student> studentList();// 전체목록
 
 	public void modifyStudent(Student student); // 한건수정
 
-
-	public List<Student> searchStudent(String name); //이름조회
+	public List<Student> searchStudent(String name); // 이름조회
 
 	public void saveToFile();
 
-	void removeStudent(int srn);
+	void removeStudent(String sna);
+
 }
