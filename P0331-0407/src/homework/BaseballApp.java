@@ -21,7 +21,7 @@ public class BaseballApp  extends connection implements BaseballService{
 
 	}
 
-	class BaseballServiceN implements BaseballService {
+	class BaseballService implements BaseballService {
 
 		@Override
 		public void postAPost(Baseball baseball) {
@@ -48,9 +48,9 @@ public class BaseballApp  extends connection implements BaseballService{
 		@Override // 게시글 번호로 조회해서 제목과 내용 수정
 		public void modifyBaseballName(int pno) {
 			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getPostNo() == Baseball.getPostNo()) {
-					list.get(i).setPostName(Baseball.getPostName());
-					list.get(i).setPostNae(Baseball.getPostNae());
+				if (list.get(i).getPostNo() == baseball.getPostNo()) {
+					list.get(i).setPostName(baseball.getPostName());
+					list.get(i).setPostNae(baseball.getPostNae());
 				}
 			}
 
