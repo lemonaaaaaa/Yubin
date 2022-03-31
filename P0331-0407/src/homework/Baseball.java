@@ -2,21 +2,26 @@ package homework;
 
 public class Baseball {
 
-	private int postNo;
-	private String postName;
-	private String postNae;
-	private String postPer;
+	private int postNo; // 게시글번호
+	private String postName; // 게시글제목
+	private String postNae; // 게시글내용
+	private String postPer; // 작성자
+	private String postDate; // 작성일자
+
 
 	public Baseball() {
 
 	}
 
-	public Baseball(int postNo, String postName, String postNae, String postPer) {
+	public Baseball(int postNo, String postName, String postNae, String postPer, String postDate, String identify,
+			int password) {
 		super();
 		this.postNo = postNo;
 		this.postName = postName;
 		this.postNae = postNae;
 		this.postPer = postPer;
+		this.postDate = postDate;
+
 	}
 
 	public int getPostNo() {
@@ -51,13 +56,23 @@ public class Baseball {
 		this.postPer = postPer;
 	}
 
+	public String getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Baseball 갤러리 [게시글 번호 =" + postNo //
-				+ ", 제목 =" + postName //
-				+ ", 내용 =" + postNae //
-				+ ", 작성자 =" //
-				+ postPer + "]";
+		return "Baseball [게시글 번호 =" + postNo//
+				+ ", 게시글 제목 =" + postName//
+				+ ", 게시글 내용 =" + postNae//
+				+ ", 작성자 =" + postPer//
+				+ ", 작성일자 =" + postDate//
+				+ "]";
 	}
 
 }
