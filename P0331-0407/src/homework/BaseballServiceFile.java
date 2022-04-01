@@ -105,34 +105,6 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 		return list;
 	}
 
-//	@Override
-//	public void modifyBaseballName(Baseball baseball) {// 게시글번호로수정(제목, 내용)
-//		// *본인이 아닐때 수정불가하도록 기능 추가하기
-//	
-//		conn = getConnect();
-//		String sql = "update baseball_info\r\r"//
-//				+ "set baseball_name = ?,\r\n"//
-//				+ "baseballnae = ?\r\n"//
-//				+ "WHERE post_no = ? ";
-//
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, baseball.getPostName());
-//			psmt.setString(2, baseball.getPostNae());
-//			psmt.setInt(3, baseball.getPostNo());
-//
-//			int r = psmt.executeUpdate();
-//			System.out.println(r + "로 수정됨");
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//		} finally {
-//			disconnect();
-//
-//		 
-//
-//	}
-
 	@Override
 	public void deleteBaseballName(String name) {// 게시글제목으로 삭제
 		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
@@ -222,9 +194,27 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void modifyBaseballName(Baseball baseball) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void modifyBaseballName(Baseball baseball) {// 게시글번호로수정(제목, 내용)
+		conn = getConnect();
+		String sql = "update baseball_info\r\r"//
+				+ "set baseball_name = ?,\r\n"//
+				+ "baseball_nae = ?\r\n"//
+				+ "WHERE post_no = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, baseball.getPostName());
+			psmt.setString(2, baseball.getPostNae());
+			psmt.setInt(3, baseball.getPostNo());
 
+			int r = psmt.executeUpdate();
+			System.out.println(r + "로 수정됨");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			disconnect();
+
+		}
+
+	}
 }
