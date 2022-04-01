@@ -14,7 +14,7 @@ public interface StudentService {
 
 	public List<Student> searchStudent(String name); // 이름조회
 
-	public void saveToFile();
+	public void saveToFile();  
 
 	void removeStudent(String sna);
 

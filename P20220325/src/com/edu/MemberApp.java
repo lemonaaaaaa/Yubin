@@ -2,21 +2,24 @@ package com.edu;
 
 import java.util.*;
 
-public class MemberApp {
+public class MemberApp{
 	// 필드만 있고,
 	List<Member> members = new ArrayList<Member>();
 	Scanner scn = new Scanner(System.in);
 
-// 생성자
+	
+	//중첩클래스. 내부클래스(클래스안으ㅢ클래스)
+//인터페이스   ---------------------------추상메소드
 	class MemberServiceImpl implements MemberService {
 
 		@Override
-		public void addMember(Member member) {
+		public void addMember(Member member) {//기능넣기-컬렉션에 한건 추가.
+			
 			members.add(member);
 		}
 
 		@Override
-		public void modifyMember(Member member) {
+		public void modifyMember(Member member) {//수정하겠따
 			for (Member mbr : members) {
 				if (mbr.getMemberId() == member.getMemberId()) {
 					mbr.setPhone(member.getPhone());
@@ -39,7 +42,8 @@ public class MemberApp {
 		while (true)
 
 		{
-			int menu = scn.nextInt();//
+			int menu = 0;
+		
 
 			System.out.println("이름을 입력해주세요");
 			String memberName = scn.next();
@@ -48,6 +52,14 @@ public class MemberApp {
 			System.out.println("전화번호를 입력하세요");
 			String phone = scn.next();
 
+			
+			
+			//예외처리
+			try {
+				menu = scn.nextInt();
+			}catch (Exception e) {
+				System.out.println("똑띠쳐라");
+			}
 			if (menu == 1) {
 				System.out.println("1.도서회원 2. 축구 3. 수영");
 				int menu2 = scn.nextInt();
