@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BaseballApp extends DAO{
+public class BaseballApp extends DAO {
 
 	List<Baseball> list = new ArrayList<Baseball>();
 	List<Login> list2 = new ArrayList<Login>();//
@@ -16,7 +16,6 @@ public class BaseballApp extends DAO{
 
 	}
 
-//	
 	// 메인기능!!
 
 	public void execute() {

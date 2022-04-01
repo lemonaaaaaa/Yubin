@@ -1,10 +1,33 @@
 package homework;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballServiceFile extends DAO implements BaseballService {
+
+	@Override
+	public void Login(String idetify, int password) {// 로그인
+		conn = getConnect();
+		String sql = "SELECT identify, pass\r\n" + "FROM login_info\r\n" + "WHERE identify = ?\r\n" + "AND pass = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, identify);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString(1).contentEquals(pass)) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public void postAPost(Baseball baseball) {// 입력
@@ -15,7 +38,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 				+ "VALUES (?, ?)";
 
 		try {
-			psmt = conn.prepareStatement(sql); 
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, baseball.getPostName());
 			psmt.setString(2, baseball.getPostNae());
 			int r = psmt.executeUpdate();
@@ -79,7 +102,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 			disconnect();
 		}
 
-		return null;
+		return list;
 	}
 
 	@Override
@@ -106,7 +129,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 		} finally {
 			disconnect();
 
-		}
+		 
 
 	}
 
@@ -156,7 +179,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void login(Login login) {//로그인
+	public void login(Login login) {// 로그인
 		// *로그인 안될경우 될 경우 경우 만들어야함
 		String sql = "INSERT INTO login_info\r\n" //
 				+ "(identity,\r\n" + "pass,\r\n"//
@@ -178,8 +201,8 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void logout(Login login) {//로그아웃 기능.
-		//로그아웃 후 종료 되도록 기능 추가 필요
+	public void logout(Login login) {// 로그아웃 기능.
+		// 로그아웃 후 종료 되도록 기능 추가 필요
 		String sql = "INSERT INTO login_info\r\n" //
 				+ "(pass,\r\n" + ")\r\n" //
 				+ "VALUES(?)";
@@ -196,7 +219,6 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 			disconnect();
 
 		}
-
 	}
 
 }
