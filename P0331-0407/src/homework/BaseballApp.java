@@ -103,7 +103,10 @@ public class BaseballApp extends DAO {
 				}
 
 			} else if (menu == 3) {// 회원탈퇴
-
+				System.out.println("탈퇴할 아이디를 입력해주세요");
+				String ID = scn.next();
+				System.out.println("탈퇴할 비밀번호를 입력해주세요");
+				String PW = scn.next();
 			} else if (menu == 9) {
 				// 로그인 없이 종료
 			}

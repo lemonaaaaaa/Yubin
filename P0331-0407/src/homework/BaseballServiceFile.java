@@ -7,27 +7,27 @@ import java.util.List;
 
 public class BaseballServiceFile extends DAO implements BaseballService {
 
-	@Override
-	public void Login(String idetify, int password) {// 로그인
-		conn = getConnect();
-		String sql = "SELECT identify, pass\r\n" + "FROM login_info\r\n" + "WHERE identify = ?\r\n" + "AND pass = ? ";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, identify);
-			rs = psmt.executeQuery();
-			if (rs.next()) {
-				if (rs.getString(1).contentEquals(pass)) {
-					return 1;
-				} else {
-					return 0;
-				}
-			}
+//	@Override
+//	public void Login(String idetify, int password) {// 로그인
+//		conn = getConnect();
+//		String sql = "SELECT identify, pass\r\n" + "FROM login_info\r\n" + "WHERE identify = ?\r\n" + "AND pass = ? ";
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, identify);
+//			rs = psmt.executeQuery();
+//			if (rs.next()) {
+//				if (rs.getString(1).contentEquals(pass)) {
+//					return 1;
+//				} else {
+//					return 0;
+//				}
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
+//	}
 
 	@Override
 	public void postAPost(Baseball baseball) {// 입력
@@ -105,33 +105,33 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 		return list;
 	}
 
-	@Override
-	public void modifyBaseballName(Baseball baseball) {// 게시글번호로수정(제목, 내용)
-		// *본인이 아닐때 수정불가하도록 기능 추가하기
-	
-		conn = getConnect();
-		String sql = "update baseball_info\r\r"//
-				+ "set baseball_name = ?,\r\n"//
-				+ "baseballnae = ?\r\n"//
-				+ "WHERE post_no = ? ";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, baseball.getPostName());
-			psmt.setString(2, baseball.getPostNae());
-			psmt.setInt(3, baseball.getPostNo());
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "로 수정됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {
-			disconnect();
-
-		 
-
-	}
+//	@Override
+//	public void modifyBaseballName(Baseball baseball) {// 게시글번호로수정(제목, 내용)
+//		// *본인이 아닐때 수정불가하도록 기능 추가하기
+//	
+//		conn = getConnect();
+//		String sql = "update baseball_info\r\r"//
+//				+ "set baseball_name = ?,\r\n"//
+//				+ "baseballnae = ?\r\n"//
+//				+ "WHERE post_no = ? ";
+//
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, baseball.getPostName());
+//			psmt.setString(2, baseball.getPostNae());
+//			psmt.setInt(3, baseball.getPostNo());
+//
+//			int r = psmt.executeUpdate();
+//			System.out.println(r + "로 수정됨");
+//		} catch (SQLException e) {
+//
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//
+//		 
+//
+//	}
 
 	@Override
 	public void deleteBaseballName(String name) {// 게시글제목으로 삭제
@@ -219,6 +219,12 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 			disconnect();
 
 		}
+	}
+
+	@Override
+	public void modifyBaseballName(Baseball baseball) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
