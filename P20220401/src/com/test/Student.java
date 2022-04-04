@@ -28,7 +28,7 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [studNo=" + studNo + ", studName=" + studName + "]";
+		return "Student [학생번호 =" + studNo + ", 학생 이름 =" + studName + "]";
 	}
 
 }

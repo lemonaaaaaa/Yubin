@@ -18,9 +18,9 @@ public interface BaseballService {
 	//게시글 번호로 조회해서 제목 및 내용 수정 2-4
 	
 	
-	void deleteBaseballName(String name); //게시글 제목으로 삭제 2-5
+	void deleteBaseballPostNo(int postNo); //게시글 번호로 삭제 2-5
 	
-	void deleteBaseballPer(String per); //게시글 작성자로 삭제 2-6
+    
 
 
 

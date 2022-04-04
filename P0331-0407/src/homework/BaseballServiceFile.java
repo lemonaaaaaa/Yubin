@@ -10,7 +10,9 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	@Override
 	public void login(Login login) {// 로그인
 		conn = getConnect();
-		String sql = "SELECT identify, pass\r\n" + "FROM login_info\r\n" + "WHERE identify = ?\r\n" + "AND pass = ? ";
+		String sql = "SELECT identify, pass\r\n" //
+				+ "FROM login_info\r\n" + "WHERE identify = ?\r\n" //
+				+ "AND pass = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, identify);
@@ -22,10 +24,11 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 					return 0;
 				}
 			}
+			return -1; //로그인 정보가 없는경우
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}return -2; //DB에러
 
 	}
 //	@Override
@@ -127,15 +130,15 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void deleteBaseballName(String name) {// 게시글제목으로 삭제
-		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
+	public void deleteBaseballPostNo(int postNo) {// 게시글제목으로 삭제
+		
 		conn = getConnect();
 		String sql = "DELETE FROM baseball_info\r\n"//
-				+ "WHERE post_name = ? ";
+				+ "WHERE post_no = ? ";
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, name);
+			psmt.setInt(1, postNo);
 
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 삭제됨");
@@ -149,29 +152,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 
 	}
 
-	@Override
-	public void deleteBaseballPer(String per) {// 게시글 작성자로 삭제
-		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
-		conn = getConnect();
-		String sql = "DELETE FROM baseball_info\r\n"//
-				+ "WHERE post_per = ? ";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, per);
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 삭제됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-			disconnect();
-
-		}
-	}
-
-
+	
 
 	@Override
 	public void logout(Login login) {// 로그아웃 기능.

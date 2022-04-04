@@ -25,7 +25,7 @@ public class BaseballApp extends DAO {
 		// 메뉴2 : (로그인 후) 1. 입력 2.전체목록조회 3. 제목으로 조회 4. 게시글 번호 조회로 수정 //
 		// 5. 게시글 제목으로 삭제 6. 게시글 작성자로 삭제 9. 로그아웃
 		while (true) {
-			System.out.println("메뉴 : 1. 로그인 2.회원가입 3.탈퇴 9. 종료 ");
+			System.out.println("메뉴 : 1. 로그인 9. 종료 ");
 			System.out.println("선택 >> ");
 
 			int menu = scn.nextInt();
@@ -74,27 +74,14 @@ public class BaseballApp extends DAO {
 					System.out.println("수정할 내용 입력 >> ");
 					String postNae = scn.next();
 
-					Baseball b1 = new Baseball(0, postName, postNae, null, null, null, 0);
+					Baseball b1 = new Baseball(postNo, postName, postNae, null, null, null, 0);
 					service.modifyBaseballName(b1);
 					System.out.println("수정되었습니다");
 
 				} else if (menu2 == 5) {// 게시글 제목으로 삭제
-					System.out.println("삭제하려는 게시글의 제목을 입력해주세요");
-					String name = scn.next();
-//					List<Baseball> list = service.deleteBaseballName(name);
-//					for (Baseball b : list) {
-//						System.out.println(b.toString());
-//					}
-					service.deleteBaseballName(name);
-
-				} else if (menu2 == 6) {// 게시글 작성자로 삭제
-					System.out.println("삭제하려는 작성자의 이름을 입력해주세요");
-					String per = scn.next();
-//					List<Baseball> list = service.deleteBaseballPer(per);
-//					for (Baseball b : list) {
-//						System.out.println(b.toString());
-//					}
-					service.deleteBaseballPer(per);
+					System.out.println("삭제하려는 게시글의 번호를 입력해주세요");
+					int postNo = scn.nextInt();
+					service.deleteBaseballPostNo(postNo);
 
 				} else if (menu2 == 9) {// 로그아웃 및 종료
 					System.err.println("종료합니다");
@@ -102,11 +89,6 @@ public class BaseballApp extends DAO {
 
 				}
 
-			} else if (menu == 3) {// 회원탈퇴
-				System.out.println("탈퇴할 아이디를 입력해주세요");
-				String ID = scn.next();
-				System.out.println("탈퇴할 비밀번호를 입력해주세요");
-				String PW = scn.next();
 			} else if (menu == 9) {
 				// 로그인 없이 종료
 			}
