@@ -43,4 +43,9 @@ public class DAO {
 		}
 	}
 
+	public void deleteBaseballPer(String per) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

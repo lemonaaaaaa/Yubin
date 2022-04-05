@@ -5,6 +5,7 @@ public class Login {
 	private String pass; // 비밀번호
 	
 	
+	
 	public Login(String identify, String pass) {
 		super();
 		this.identify = identify;

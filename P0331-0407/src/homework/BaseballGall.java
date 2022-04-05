@@ -1,6 +1,6 @@
 package homework;
 
-public class Baseball {
+public class BaseballGall {
 
 	private int postNo; // 게시글번호
 	private String postName; // 게시글제목
@@ -9,12 +9,12 @@ public class Baseball {
 	private String postDate; // 작성일자
 
 
-	public Baseball() {
+	public BaseballGall() {
 
 	}
 
-	public Baseball(int postNo, String postName, String postNae, String postPer, String postDate, String identify,
-			int password) {
+	public BaseballGall(int postNo, String postName, String postNae,//
+			String postPer, String postDate) {
 		super();
 		this.postNo = postNo;
 		this.postName = postName;
@@ -28,8 +28,8 @@ public class Baseball {
 		return postNo;
 	}
 
-	public void setPostNo(int postNo) {
-		this.postNo = postNo;
+	public int setPostNo(int postNo) {
+		return this.postNo = postNo;
 	}
 
 	public String getPostName() {
