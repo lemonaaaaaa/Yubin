@@ -1,4 +1,4 @@
-package homework;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -43,9 +43,6 @@ public class DAO {
 		}
 	}
 
-	public void deleteBaseballPer(String per) {
-		// TODO Auto-generated method stub
-		
-	}
-//
+
+	
 }

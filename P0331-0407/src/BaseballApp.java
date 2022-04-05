@@ -1,4 +1,4 @@
-package homework;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +25,11 @@ public class BaseballApp extends DAO {
 //		 메뉴2 : (로그인 후) 1. 입력 2.전체목록조회 3. 게시글 번호로 조회 4. 게시글 번호 조회로 수정 //
 //		 5. 게시글 번호로 삭제 9. 로그아웃
 		while (true) {
-<<<<<<< HEAD
+
 			System.out.println("메뉴 : 1. 로그인 2.회원가입 3.회원탈퇴 9. 종료 ");
-=======
-			System.out.println("메뉴 : 1. 로그인 9. 종료 ");
->>>>>>> branch 'master' of https://github.com/lemonaaaaaa/Yubin
+
+	
+
 			System.out.println("선택 >> ");
 
 			int menu = scn.nextInt();
@@ -39,7 +39,7 @@ public class BaseballApp extends DAO {
 				System.out.println("ID 입력>>");
 				String ID = scn.next();
 				System.out.println("PW 입력>>");
-				int PW = scn.nextInt();
+				String PW = scn.next();
 				
 
 				if (result == 1) {
@@ -47,7 +47,9 @@ public class BaseballApp extends DAO {
 				} else if (result == 0) {
 					System.out.println("로그인 실패.");
 				}
-				service.login(Login);
+				service.login(ID, PW);
+			
+			
 			// 로그인 이후 메뉴2
 			System.out.println("메뉴 : 1. 게시글입력 2. 전체목록조희 3. 게시글 번호로 조회" + "4. 수정 5. 삭제 9. 로그아웃");
 			System.out.println("선택 >> ");
@@ -76,22 +78,14 @@ public class BaseballApp extends DAO {
 			else if (menu2 == 3) {//번호로 내용을 조회
 				System.out.println("조회할 게시글 번호를 입력>>");
 				int postNo = scn.nextInt();
-
-<<<<<<< HEAD
 				BaseballGall baseball = service.getPostNo(postNo);
 				if (postNo == 0) {
 					System.out.println("해당되는 번호의 게시글이 없습니다");
 				} else  {
 					System.out.println(baseball.toString());
-//					service.getPostNo(postNo);
-				}	
-=======
-					Baseball b1 = new Baseball(postNo, postName, postNae, null, null, null, 0);
-					service.modifyBaseballName(b1);
-					System.out.println("수정되었습니다");
->>>>>>> branch 'master' of https://github.com/lemonaaaaaa/Yubin
-
-<<<<<<< HEAD
+					service.getPostNo(postNo);
+										
+				}
 			} else if (menu2 == 4) {// 게시글 번호 조회로 제목 및 내용 수정
 				System.out.println("수정할 게시글의 번호 입력 >> ");
 				int postNo = scn.nextInt();
@@ -116,27 +110,20 @@ public class BaseballApp extends DAO {
 					if (postNo == 0) {
 						System.out.println("존재하지 않는 게시글 번호입니다");
 					} else {
+						
 						continue;
 					}
-=======
-				} else if (menu2 == 5) {// 게시글 제목으로 삭제
-					System.out.println("삭제하려는 게시글의 번호를 입력해주세요");
-					int postNo = scn.nextInt();
-					service.deleteBaseballPostNo(postNo);
+				}
+			
 
 				} else if (menu2 == 9) {// 로그아웃 및 종료
 					System.err.println("종료합니다");
 					break;
 
->>>>>>> branch 'master' of https://github.com/lemonaaaaaa/Yubin
+
+
+		
 				}
-				service.deleteBaseballPostNo(postNo);
-
-			} else if (menu2 == 9) {// 로그아웃 및 종료
-				System.err.println("종료합니다");
-				break;
-
-			}
 
 			} else if (menu == 2) {// 회원가입
 
@@ -150,24 +137,22 @@ public class BaseballApp extends DAO {
 
 				service.addBaseBallMem(ID, PW);
 
-<<<<<<< HEAD
+
 			} else if (menu == 3) {// 회원탈퇴
 				System.out.println("탈퇴할 아이디를 입력해주세요");
 				String ID = scn.next();
-				System.out.println("탈퇴할 비밀번호를 입력해주세요");
+				System.out.println("비밀번호를 입력해주세요");
 				String PW = scn.next();
-				service.deleteBaseballName(ID);
-				service.deleteBaseballName(PW);
+				service.deleteBaseballMem(ID, PW);
 
-=======
->>>>>>> branch 'master' of https://github.com/lemonaaaaaa/Yubin
 			} else if (menu == 9) {
-				// 로그인 없이 종료
+				System.err.println("종료합니다");
+				break;
 
 			}
 
 		} // end of while
 
-	}// end of excute
+}// end of excute
 
 }// class

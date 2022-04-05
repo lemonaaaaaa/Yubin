@@ -1,44 +1,10 @@
-package homework;
 
-import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.edu.collect.Student;
-
 public class BaseballOracle extends DAO implements BaseballService {
-
-	@Override
-	public void login(Login login) {// 로그인
-		conn = getConnect();
-		String sql = "SELECT identify, pass\r\n"//
-				+ "FROM login_info\r\n"//
-				+ "WHERE identify = ?\r\n"//
-				+ "AND pass = ? " + ")\r\n" + "VALUES(?, ?)";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, login.getIdentify());
-			rs = psmt.executeQuery();
-
-			int r = psmt.executeUpdate();
-			if (rs.next()) {
-				if (rs.getString(1).contentEquals(login.getPass())) {
-					return 1;
-					System.out.println(r + "건 접속됨");
-
-				} else {
-					return 0;
-				}
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			disconnect();
-		}
-
-	}
 
 	@Override
 	public void postAPost(BaseballGall baseball) {// 입력
@@ -136,60 +102,13 @@ public class BaseballOracle extends DAO implements BaseballService {
 		return list;
 	}
 
-	@Override
-	public void deleteBaseballPostNo(int postNo) {// 게시글번호로 삭제
-		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
-		conn = getConnect();
-		String sql = "DELETE FROM baseball_info\r\n"//
-				+ "WHERE post_no = ? ";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, postNo);
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 삭제됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-			disconnect();
-
-		}
-
-	}
-
 	
-
-	@Override
-	public void logout(Login login) {// 로그아웃 기능.
-		String sql = "INSERT INTO login_info\r\n" //
-				+ "(pass,\r\n" + ")\r\n" //
-				+ "VALUES(?)";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, login.getPass());
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 로그아웃 됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-			disconnect();
-
-		}
-	}
-
 	@Override
 	public void modifyBaseballName(BaseballGall baseball) {
 		// 게시글번호로수정(제목, 내용)
 		conn = getConnect();
-		String sql = "UPDATE baseball_info\r\n"
-				+ "SET post_name = ?,\r\n"
-				+ "post_nae = ?\r\n"
-				+ "WHERE post_no = ?";
-		
+		String sql = "UPDATE baseball_info SET post_name = ?,post_nae = ? " + "WHERE post_no = ?";
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, baseball.getPostName());
@@ -210,14 +129,90 @@ public class BaseballOracle extends DAO implements BaseballService {
 
 	@Override
 	public void addBaseBallMem(String identify, String pass) {
-		
+
 	}
 
 	@Override
 	public void deleteBaseballMem(String identify, String pass) {
-		
+
 	}
+
+
+
+	@Override
+	public void logout(String identify, String pass) {
+		String sql = "INSERT INTO login_info\r\n" //
+				+ "(pass,\r\n" + ")\r\n" //
+				+ "VALUES(?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, Login.getPass());
+
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 로그아웃 됨");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
+			disconnect();
+
+		}
+
+	}
+
+	@Override
+	public int login(String identify, String pass) {
+		conn = getConnect();
+		String sql = "SELECT identify, pass\r\n"//
+				+ "FROM login_info\r\n"//
+				+ "WHERE identify = ?\r\n"//
+				+ "AND pass = ? " + ")\r\n"//
+				+ "VALUES(?, ?)";
+ 
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, identify);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				
+				if (rs.getString("pass").equals(pass)) {
+					return 1;
+				} else {
+					return 0;
+				}
+			}
 	
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return 0;
 	
+	}
+
+	@Override
+	public void deleteBaseballPostNo(int postNo) {
+		// 게시글번호로 삭제
+		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
+		conn = getConnect();
+		String sql = "DELETE FROM baseball_info\r\n"//
+				+ "WHERE post_no = ? ";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, postNo);
+
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제됨");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
+			disconnect();
+
+		}
+	}
 
 }

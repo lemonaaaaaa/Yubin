@@ -8,7 +8,7 @@ import java.util.List;
 public class BaseballServiceFile extends DAO implements BaseballService {
 
 	@Override
-	public void login(Login login) {// 로그인
+	public void login(String identify, String pass) {
 		conn = getConnect();
 		String sql = "SELECT identify, pass\r\n" //
 				+ "FROM login_info\r\n" + "WHERE identify = ?\r\n" //
@@ -31,53 +31,29 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 		}return -2; //DB에러
 
 	}
-//	@Override
-//	public void login(Login login) {// 로그인
-//		// *로그인 안될경우 될 경우 경우 만들어야함
-//		String sql = "INSERT INTO login_info\r\n" //
-//				+ "(identity,\r\n" + "pass,\r\n"//
-//				+ ")\r\n" + "VALUES(?, ?)";
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, login.getIdentify());
-//			psmt.setString(2, login.getPass());
-//
-//			int r = psmt.executeUpdate();
-//			System.out.println(r + "건 접속됨");
-//		} catch (SQLException e) {
-//
-//			e.printStackTrace();
-//		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-//			disconnect();
-//
-//		}
-//	}
 
 	@Override
-	public void postAPost(Baseball baseball) {// 입력
-		// *작성자, 입력날짜 자동기입넣기
-		conn = getConnect();
-		String sql = "INSERT INTO baseball_info \r\n"//
-				+ "(post_name, post_nae)\r\n"//
-				+ "VALUES (?, ?)";
-
+	public void logout(String identify, String pass) {
+		String sql = "INSERT INTO login_info\r\n" //
+				+ "(pass,\r\n" + ")\r\n" //
+				+ "VALUES(?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, baseball.getPostName());
-			psmt.setString(2, baseball.getPostNae());
+			psmt.setString(1, Login.getPass());
+
 			int r = psmt.executeUpdate();
-			System.out.println(r + "건 입력됨");
+			System.out.println(r + "로그아웃 됨");
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
 			disconnect();
-		}
 
+		}
 	}
 
 	@Override
-	public Baseball getPostName(String name) {// 제목으로 조회
+	public void postAPost(BaseballGall baseball) {
 		conn = getConnect();
 		String sql = "SELECT*\r\n" + "FROM baseball_info\r\n" + "WHERE post_name = ?";
 		Baseball pno = null;
@@ -104,7 +80,12 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public List<Baseball> baseballList() {// 전체목록조회
+	public BaseballGall getPostNo(int postNo) {
+		return null;
+	}
+
+	@Override
+	public List<BaseballGall> baseballList() {
 		List<Baseball> list = new ArrayList<Baseball>();
 		conn = getConnect();
 		String sql = "SELECT* \r\n" + "FROM baseball_info\r\n" + "ORDER BY post_no";
@@ -120,7 +101,6 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 				list.add(baseball);
 			}
 
-		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
@@ -130,53 +110,7 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void deleteBaseballPostNo(int postNo) {// 게시글제목으로 삭제
-		
-		conn = getConnect();
-		String sql = "DELETE FROM baseball_info\r\n"//
-				+ "WHERE post_no = ? ";
-
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, postNo);
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 삭제됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-			disconnect();
-
-		}
-
-	}
-
-	
-
-	@Override
-	public void logout(Login login) {// 로그아웃 기능.
-		// 로그아웃 후 종료 되도록 기능 추가 필요
-		String sql = "INSERT INTO login_info\r\n" //
-				+ "(pass,\r\n" + ")\r\n" //
-				+ "VALUES(?)";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, login.getPass());
-
-			int r = psmt.executeUpdate();
-			System.out.println(r + "로그아웃 됨");
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
-			disconnect();
-
-		}
-	}
-
-	@Override
-	public void modifyBaseballName(Baseball baseball) {// 게시글번호로수정(제목, 내용)
+	public void modifyBaseballName(BaseballGall baseball) {
 		conn = getConnect();
 		String sql = "update baseball_info\r\r"//
 				+ "set baseball_name = ?,\r\n"//
@@ -197,6 +131,39 @@ public class BaseballServiceFile extends DAO implements BaseballService {
 			disconnect();
 
 		}
-
 	}
+
+	@Override
+	public void deleteBaseballPostNo(int postNo) {
+		conn = getConnect();
+		String sql = "DELETE FROM baseball_info\r\n"//
+				+ "WHERE post_no = ? ";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, postNo);
+
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제됨");
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
+			disconnect();
+
+		}
+	}
+
+	@Override
+	public void addBaseBallMem(String identify, String pass) {
+		
+	}
+
+	@Override
+	public void deleteBaseballMem(String identify, String pass) {
+		
+	}
+
+
+	
 }

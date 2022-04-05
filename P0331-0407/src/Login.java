@@ -1,4 +1,4 @@
-package homework;
+
 
 public class Login {
 	private String identify; // 아이디

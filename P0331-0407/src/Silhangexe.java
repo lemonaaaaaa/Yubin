@@ -1,4 +1,4 @@
-package homework;
+
 
 public class Silhangexe {
 	public static void main(String[] args) {
