@@ -24,7 +24,13 @@ public interface BaseballService {
 
 	public void deleteBaseballMem(String identify, String pass); //회원탈퇴
 	
+<<<<<<< HEAD
 
+=======
+	void deleteBaseballPostNo(int postNo); //게시글 번호로 삭제 2-5
+	
+    
+>>>>>>> branch 'master' of https://github.com/lemonaaaaaa/Yubin
 
 
 
