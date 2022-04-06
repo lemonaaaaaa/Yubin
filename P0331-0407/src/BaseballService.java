@@ -6,7 +6,7 @@ public interface BaseballService {
 
 	public int login(String identify, String pass);// 로그인 기능 메뉴 1-1
 
-	public void logout(String identify, String pass);// 비밀번호로 로그아웃 기능 2-9s
+	
 
 	public void postAPost(BaseballGall baseball); // 입력 2-1
 
@@ -19,11 +19,11 @@ public interface BaseballService {
 
 	void deleteBaseballPostNo(int postNo); // 게시글 번호로 삭제 2-5
 
-	public void addBaseBallMem(String identify, String pass); // 회원등록 1-2
+	public int addBaseBallMem(Login login); // 회원등록 1-2
 
-	public void deleteBaseballMem(String identify, String pass); // 회원탈퇴
+	public int deleteBaseballMem(String identify, String pass); // 회원탈퇴
 
-	
+	public int findIdentify(String identify);//아이디가 이미 존재하는지 검색
 
 
 

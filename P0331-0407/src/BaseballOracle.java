@@ -1,5 +1,4 @@
 
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +101,6 @@ public class BaseballOracle extends DAO implements BaseballService {
 		return list;
 	}
 
-	
 	@Override
 	public void modifyBaseballName(BaseballGall baseball) {
 		// 게시글번호로수정(제목, 내용)
@@ -128,36 +126,79 @@ public class BaseballOracle extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void addBaseBallMem(String identify, String pass) {
-
-	}
-
-	@Override
-	public void deleteBaseballMem(String identify, String pass) {
-
-	}
-
-
-
-	@Override
-	public void logout(String identify, String pass) {
-		String sql = "INSERT INTO login_info\r\n" //
-				+ "(pass,\r\n" + ")\r\n" //
-				+ "VALUES(?)";
+	public int findIdentify(String identify) {
+		conn = getConnect();
+		String sql = "SELECT identify\r\n" + "FROM login_info\r\n" + "WHERE identify = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, Login.getPass());
+			psmt.setString(1, identify);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				return 1;
+			} else {
+				return 0;
+			}
 
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 로그아웃 됨");
 		} catch (SQLException e) {
 
 			e.printStackTrace();
-		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
+		} finally {
 			disconnect();
-
 		}
 
+		return 0;
+	}
+
+	@Override
+	public int addBaseBallMem(Login login) {
+		conn = getConnect();
+		String sql = "INSERT INTO login_info (identify, pass)\r\n" //
+				+ "VALUES(?, ?)";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, login.getIdentify());
+			psmt.setString(2, login.getPass());
+
+			int r = psmt.executeUpdate();
+
+			return r;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return 0;
+
+	}
+
+	@Override
+	public int deleteBaseballMem(String identify, String pass) {
+		conn = getConnect();
+		String sql = "UPDATE login_info\r\n" + //
+				"SET identify = ?\r\n" + //
+				"WHERE identify = ?";
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, identify);
+//			psmt.setString(2, pass);
+//			int r = psmt.executeUpdate();
+//			return r;
+//			if (rs.next()) {
+//
+//				if (rs.getString("pass").equals(pass)) {
+//					return 1;
+//				} else {
+//					return 0;
+//				}
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+		return 0;
 	}
 
 	@Override
@@ -166,30 +207,28 @@ public class BaseballOracle extends DAO implements BaseballService {
 		String sql = "SELECT identify, pass\r\n"//
 				+ "FROM login_info\r\n"//
 				+ "WHERE identify = ?\r\n"//
-				+ "AND pass = ? " + ")\r\n"//
-				+ "VALUES(?, ?)";
- 
+				+ "AND pass = ? ";
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, identify);
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				
+
 				if (rs.getString("pass").equals(pass)) {
 					return 1;
 				} else {
 					return 0;
 				}
 			}
-	
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 		return 0;
-	
+
 	}
 
 	@Override
@@ -214,5 +253,7 @@ public class BaseballOracle extends DAO implements BaseballService {
 
 		}
 	}
+
+	
 
 }

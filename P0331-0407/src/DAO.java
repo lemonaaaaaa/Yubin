@@ -13,7 +13,12 @@ public class DAO {
 	Statement stmt;
 	ResultSet rs;
 	PreparedStatement psmt;
-
+   public static String logined;
+   
+	
+	
+	
+	
 	public Connection getConnect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -22,7 +27,7 @@ public class DAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("============ 연결 ============");
+		System.out.println("==============================");
 		return conn;
 	}
 
