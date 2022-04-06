@@ -177,27 +177,20 @@ public class BaseballOracle extends DAO implements BaseballService {
 	@Override
 	public int deleteBaseballMem(String identify, String pass) {
 		conn = getConnect();
-		String sql = "UPDATE login_info\r\n" + //
-				"SET identify = ?\r\n" + //
-				"WHERE identify = ?";
-//		try {
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, identify);
-//			psmt.setString(2, pass);
-//			int r = psmt.executeUpdate();
-//			return r;
-//			if (rs.next()) {
-//
-//				if (rs.getString("pass").equals(pass)) {
-//					return 1;
-//				} else {
-//					return 0;
-//				}
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		String sql = "DELETE\r\n"
+				+ "FROM login_info\r\n"
+				+ "WHERE identify = ?\r\n"
+				+ "AND\r\n"
+				+ "pass = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, identify);
+			psmt.setString(2, pass);
+			psmt.executeQuery();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
