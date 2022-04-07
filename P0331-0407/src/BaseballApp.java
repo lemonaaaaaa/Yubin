@@ -105,7 +105,7 @@ public class BaseballApp extends DAO {
 //					List<Baseball> list = service.deleteBaseballName(name);
 //					for (Baseball b : list) {
 //						System.out.println(b.toString());
-//					}
+//					}**********************************
 					for (int i = 0; i < list.size(); i++) {
 						if (postNo == 0) {
 							System.out.println("존재하지 않는 게시글 번호입니다");
