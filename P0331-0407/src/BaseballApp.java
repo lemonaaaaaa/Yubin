@@ -33,15 +33,15 @@ public class BaseballApp extends DAO {
 			if (menu == 1) {// 로그인 기능
 
 				System.out.println("ID 입력>>");
-				String ID = scn.next();
+				String id = scn.next();
 				System.out.println("PW 입력>>");
-				String PW = scn.next();
+				String pw = scn.next();
 
-				int result = service.login(ID, PW);
+				int result = service.login(id, pw);
 
 				if (result == 1) {
 					System.out.println("로그인 되었습니다");
-					logined = ID;
+					logined = id;
 
 				} else if (result == 0) {
 					System.out.println("로그인 실패.");
@@ -59,7 +59,7 @@ public class BaseballApp extends DAO {
 					System.out.println("게시글 내용 >>");
 					String postNae = scn.next();
 
-					BaseballGall b1 = new BaseballGall(0, postName, postNae, null, null);
+					BaseballGall b1 = new BaseballGall(0, postName, postNae, id, null);
 
 					service.postAPost(b1);
 
@@ -129,15 +129,15 @@ public class BaseballApp extends DAO {
 				int result2 = service.findIdentify(id);
 
 				if (result2 == 0) {
-
-					Login login = new Login(id, pw);
-					int result = service.addBaseBallMem(login);
-					if (result == 0) {
-						System.out.println("회원가입 성공");
+					if (service.addBaseBallMem(id, pw)) {
+						System.out.println("등록완료");
+					} else {
+						System.out.println("등록중 에러발생");
 					}
 
 				} else {
 					System.out.println("중복 ID가 존재합니다");
+					continue;
 
 				}
 
@@ -153,8 +153,9 @@ public class BaseballApp extends DAO {
 
 					System.out.println("탈퇴되었습니다");
 
-				} else if (result == 0) {
+				} else {
 					System.out.println("아이디와 비밀번호가 맞지 않습니다");
+					continue;
 				}
 
 			} else if (menu == 9) {

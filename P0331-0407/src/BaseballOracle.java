@@ -146,50 +146,53 @@ public class BaseballOracle extends DAO implements BaseballService {
 			disconnect();
 		}
 
-		return 0;
+		return 1;
 	}
 
 	@Override
-	public int addBaseBallMem(Login login) {
+	public boolean addBaseBallMem(String id, String pw) {
 		conn = getConnect();
-		String sql = "INSERT INTO login_info (identify, pass)\r\n" //
+		String sql = "INSERT INTO login_info (identify, pass) " //
 				+ "VALUES(?, ?)";
 
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, login.getIdentify());
-			psmt.setString(2, login.getPass());
-
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
 			int r = psmt.executeUpdate();
-
-			return r;
+			System.out.println(r + "건 입력됨");
+			if (r > 0) {
+				return true;
+			}
 
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		return 0;
-
+		return false;
 	}
 
 	@Override
 	public int deleteBaseballMem(String identify, String pass) {
 		conn = getConnect();
-		String sql = "DELETE\r\n"
-				+ "FROM login_info\r\n"
-				+ "WHERE identify = ?\r\n"
-				+ "AND\r\n"
-				+ "pass = ?";
+		String sql = "DELETE\r\n" + "FROM login_info\r\n"//
+				+ "WHERE identify = ?\r\n" + "AND\r\n" + "pass = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, identify);
 			psmt.setString(2, pass);
-			psmt.executeQuery();
-	
+			int r = psmt.executeUpdate();
+			if(r == 0) {
+				return 0;
+			}
+			System.out.println(r + "건 삭제됨");
+			return 1;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			disconnect();
 		}
 		return 0;
 	}
@@ -208,20 +211,17 @@ public class BaseballOracle extends DAO implements BaseballService {
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
+				return 1;
 
-				if (rs.getString("pass").equals(pass)) {
-					return 1;
-				} else {
-					return 0;
-				}
 			}
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} finally {
+			disconnect();
 		}
 		return 0;
-
 	}
 
 	@Override
@@ -246,7 +246,5 @@ public class BaseballOracle extends DAO implements BaseballService {
 
 		}
 	}
-
-	
 
 }
