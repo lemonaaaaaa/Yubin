@@ -10,6 +10,10 @@ public class BaseballApp extends DAO {
 
 	Scanner scn = new Scanner(System.in);
 
+	static String Login() {
+		return logined;
+	}
+
 	// 생성자
 	public BaseballApp() {
 
@@ -49,7 +53,7 @@ public class BaseballApp extends DAO {
 				}
 
 				// 로그인 이후 메뉴2
-				System.out.println("메뉴 : 1. 게시글입력 2. 전체목록조희 3. 게시글 번호로 조회" + "4. 수정 5. 삭제 9. 로그아웃");
+				System.out.println("메뉴 : 1. 게시글입력 2. 전체목록조희 3. 게시글 번호로 조회" + " 4. 수정 5. 삭제 9. 로그아웃");
 				System.out.println("선택 >> ");
 				int menu2 = scn.nextInt();
 				if (menu2 == 1) {// 게시글 입력
@@ -81,7 +85,7 @@ public class BaseballApp extends DAO {
 					} else {
 						System.out.println(baseball.toString());
 						service.getPostNo(postNo);
-
+						continue;
 					}
 				} else if (menu2 == 4) {// 게시글 번호 조회로 제목 및 내용 수정
 					System.out.println("수정할 게시글의 번호 입력 >> ");
@@ -94,7 +98,7 @@ public class BaseballApp extends DAO {
 					BaseballGall b1 = new BaseballGall(postNo, postName, postNae, null, null);
 					service.modifyBaseballName(b1);
 					System.out.println("수정되었습니다");
-
+					continue;
 				} else if (menu2 == 5) {// 게시글 번호로 삭제
 					System.out.println("삭제하려는 게시글의 번호를 입력해주세요");
 					int postNo = scn.nextInt();
@@ -105,14 +109,25 @@ public class BaseballApp extends DAO {
 					for (int i = 0; i < list.size(); i++) {
 						if (postNo == 0) {
 							System.out.println("존재하지 않는 게시글 번호입니다");
-						} else {
+						} else if (postNo != 0) {
+							System.out.println("작성자의 아이디를 입력해주세요");
+							String id1 = scn.next();
+							System.out.println("작성자의 비밀번호 입력해주세요");
+							String pw1 = scn.next();
+							if (id1.equals(id) && pw1.equals(pw)) {
+								service.deleteBaseballPostNo(postNo);
+								System.out.println("정상적으로 삭제되었습니다");
+							} else {
+								System.out.println("삭제불가");
+							}
 
-							continue;
+						} else {
+							System.out.println("삭제불가");
 						}
 					}
 
 				} else if (menu2 == 9) {// 로그아웃 및 종료
-					System.err.println("종료합니다");
+					System.err.println("종료합니다 또봐용 :3");
 					break;
 
 				}
@@ -137,7 +152,6 @@ public class BaseballApp extends DAO {
 
 				} else {
 					System.out.println("중복 ID가 존재합니다");
-					continue;
 
 				}
 
@@ -166,10 +180,10 @@ public class BaseballApp extends DAO {
 				System.out.println("잘못된 입력입니다");
 				continue;
 			}
+			break;
 
 		} // end of while
 		return;
 
 	}// end of excute
-
 }// class

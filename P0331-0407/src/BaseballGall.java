@@ -9,6 +9,7 @@ public class BaseballGall {
 	private String postDate; // 작성일자
 
 
+
 	public BaseballGall() {
 
 	}
@@ -69,7 +70,6 @@ public class BaseballGall {
 	public String toString() {
 		return "Baseball [게시글 번호 =" + postNo//
 				+ ", 게시글 제목 =" + postName//
-				+ ", 게시글 내용 =" + postNae//
 				+ ", 작성자 =" + postPer//
 				+ ", 작성일자 =" + postDate//
 				+ "]";

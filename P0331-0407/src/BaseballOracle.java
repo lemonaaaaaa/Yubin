@@ -4,12 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballOracle extends DAO implements BaseballService {
+	
+	
+	
+	static String Login() {
+		return logined;
+	}
 
 	@Override
-	public void postAPost(BaseballGall baseball) {// 입력
-		conn = getConnect();
+	public void postAPost(BaseballGall baseball)  {// 입력
+		conn = getConnect(); //작성자 자동입력
 
-		String sql2 = "SELECT MAX(post_no)+1\r\n" + "FROM baseball_info";
+		String sql2 = "SELECT MAX(post_no)+1\r\n" //
+				+ "FROM baseball_info";
 		try {
 			psmt = conn.prepareStatement(sql2);
 			rs = psmt.executeQuery();
@@ -17,10 +24,14 @@ public class BaseballOracle extends DAO implements BaseballService {
 
 				int nextNum = rs.getInt(1);
 
-				String sql = "INSERT INTO baseball_info \r\n"//
-						+ "(post_no, post_name, post_nae)\r\n"//
-						+ "VALUES (?, ?, ?)";
+				String sql = "INSERT INTO baseball_info \r\n"
+						+ "(post_no, post_name, post_nae, post_per, post_date)\r\n"
+						+ "VALUES (?, ?, ?, null , sysdate)";
 
+//				String sql3 = "UPDATE baseball_info\r\n"
+//						+ "SET identify = ?\r\n"
+//						+ "WHERE identify IS NULL";
+				
 				rs = psmt.executeQuery();
 				if (rs.next()) {
 
@@ -28,6 +39,8 @@ public class BaseballOracle extends DAO implements BaseballService {
 					psmt.setInt(1, baseball.setPostNo(nextNum));
 					psmt.setString(2, baseball.getPostName());
 					psmt.setString(3, baseball.getPostNae());
+//					psmt = conn.prepareStatement(sql3);
+//					psmt.setString(1, );
 					int r = psmt.executeUpdate();
 					System.out.println(r + "건 입력됨");
 				}
@@ -225,7 +238,7 @@ public class BaseballOracle extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void deleteBaseballPostNo(int postNo) {
+	public void deleteBaseballPostNo(int postNo){
 		// 게시글번호로 삭제
 		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
 		conn = getConnect();
