@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballOracle extends DAO implements BaseballService {
-	
-	
-	
+
 	static String Login() {
 		return logined;
 	}
 
 	@Override
-	public void postAPost(BaseballGall baseball)  {// 입력
-		conn = getConnect(); //작성자 자동입력
+	public void postAPost(BaseballGall baseball) {// 입력
+		conn = getConnect(); // 작성자 자동입력
 
 		String sql2 = "SELECT MAX(post_no)+1\r\n" //
 				+ "FROM baseball_info";
@@ -25,13 +23,8 @@ public class BaseballOracle extends DAO implements BaseballService {
 				int nextNum = rs.getInt(1);
 
 				String sql = "INSERT INTO baseball_info \r\n"
-						+ "(post_no, post_name, post_nae, post_per, post_date)\r\n"
-						+ "VALUES (?, ?, ?, null , sysdate)";
+						+ "(post_no, post_name, post_nae, post_per, post_date)\r\n" + "VALUES (?, ?, ?, ? , sysdate)";
 
-//				String sql3 = "UPDATE baseball_info\r\n"
-//						+ "SET identify = ?\r\n"
-//						+ "WHERE identify IS NULL";
-				
 				rs = psmt.executeQuery();
 				if (rs.next()) {
 
@@ -39,8 +32,7 @@ public class BaseballOracle extends DAO implements BaseballService {
 					psmt.setInt(1, baseball.setPostNo(nextNum));
 					psmt.setString(2, baseball.getPostName());
 					psmt.setString(3, baseball.getPostNae());
-//					psmt = conn.prepareStatement(sql3);
-//					psmt.setString(1, );
+					psmt.setString(4, logined);
 					int r = psmt.executeUpdate();
 					System.out.println(r + "건 입력됨");
 				}
@@ -115,10 +107,12 @@ public class BaseballOracle extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void modifyBaseballName(BaseballGall baseball) {
+	public void modifyBaseballNo(BaseballGall baseball) {
 		// 게시글번호로수정(제목, 내용)
 		conn = getConnect();
-		String sql = "UPDATE baseball_info SET post_name = ?,post_nae = ? " + "WHERE post_no = ?";
+		String sql = "UPDATE baseball_info//" + " SET post_name = ?,"//
+				+ "post_nae = ? " //
+				+ "WHERE post_no = ?";
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -189,18 +183,16 @@ public class BaseballOracle extends DAO implements BaseballService {
 	@Override
 	public int deleteBaseballMem(String identify, String pass) {
 		conn = getConnect();
-		String sql = "DELETE\r\n" + "FROM login_info\r\n"//
-				+ "WHERE identify = ?\r\n" + "AND\r\n" + "pass = ?";
+		String sql = "DELETE FROM login_info "//
+				+ "WHERE identify = ? and pass = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, identify);
 			psmt.setString(2, pass);
 			int r = psmt.executeUpdate();
-			if(r == 0) {
-				return 0;
-			}
+
 			System.out.println(r + "건 삭제됨");
-			return 1;
+			return r;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -238,26 +230,47 @@ public class BaseballOracle extends DAO implements BaseballService {
 	}
 
 	@Override
-	public void deleteBaseballPostNo(int postNo){
+	public boolean deleteBaseballPostNo(int postNo, String postPer) {
 		// 게시글번호로 삭제
 		// *작성자 본인이 아닐 경우 삭제 불가하도록 기능 추가
 		conn = getConnect();
-		String sql = "DELETE FROM baseball_info\r\n"//
-				+ "WHERE post_no = ? ";
+		String sql = "delete from baseball_info " + "Where post_no = ?  and post_per = ?";
 
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, postNo);
+			psmt.setString(2, postPer);
 
 			int r = psmt.executeUpdate();
-			System.out.println(r + "건 삭제됨");
+			if (r > 0) {
+				return true;
+			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		} finally {// 정상실행, 에러발생 상관없이 반드시 실행되는 코드
 			disconnect();
 
 		}
+		return false;
+	}
+
+	public String selectId(String postPer) {
+		conn = getConnect();
+		String sql = "select post_per from baseball_info where post_per = ?";
+		String id = null;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, postPer);
+			psmt.executeUpdate();
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				id = rs.getString("post_per");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
 	}
 
 }

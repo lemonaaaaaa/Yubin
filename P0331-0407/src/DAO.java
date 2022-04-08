@@ -22,12 +22,12 @@ public class DAO {
 	public Connection getConnect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.56.1:1521:xe", "hr", "hr");
-
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.0.2:1521:xe", "hr", "hr");
+//192.168.56.1
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("0__________________________________________0");
+		System.out.println("_________________________________________________");
 		return conn;
 	}
 

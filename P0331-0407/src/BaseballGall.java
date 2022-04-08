@@ -1,5 +1,4 @@
 
-
 public class BaseballGall {
 
 	private int postNo; // 게시글번호
@@ -8,13 +7,11 @@ public class BaseballGall {
 	private String postPer; // 작성자
 	private String postDate; // 작성일자
 
-
-
 	public BaseballGall() {
 
 	}
 
-	public BaseballGall(int postNo, String postName, String postNae,//
+	public BaseballGall(int postNo, String postName, String postNae, //
 			String postPer, String postDate) {
 		super();
 		this.postNo = postNo;
@@ -65,14 +62,23 @@ public class BaseballGall {
 		this.postDate = postDate;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Baseball [게시글 번호 =" + postNo//
-				+ ", 게시글 제목 =" + postName//
-				+ ", 작성자 =" + postPer//
-				+ ", 작성일자 =" + postDate//
-				+ "]";
+		return " Baseball [게시글 번호 ] " + postNo//
+				+ " [ 게시글 제목 ] " + postName//
+				+ " [ 작성자 ] " + postPer//
+				+ " [ 작성일자 ] " + postDate//
+		;}
+	
+		public String toString2() {
+			return " Baseball [게시글 번호 ] " + postNo//
+					+ " [ 게시글 제목 ]" + postName//
+					+ " [ 내용 ] " + postNae//
+					+ " [ 작성자 ] " + postPer//
+					+ " [ 작성일자 ] " + postDate//
+			;
+		
+		
 	}
 
 }

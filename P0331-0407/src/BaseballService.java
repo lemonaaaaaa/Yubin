@@ -11,15 +11,20 @@ public interface BaseballService {
 
 	public List<BaseballGall> baseballList(); // 전체목록 조회 2-2
 
-	public void modifyBaseballName(BaseballGall baseball);
+	public void modifyBaseballNo(BaseballGall baseball);
 	// 게시글 번호로 조회해서 제목 및 내용 수정 2-4
 
-	void deleteBaseballPostNo(int postNo); // 게시글 번호로 삭제 2-5
+	boolean deleteBaseballPostNo(int postNo, String postPer); // 게시글 번호로 삭제 2-5
 
 	public boolean addBaseBallMem(String id, String pw); // 회원등록 1-2
 
 	public int deleteBaseballMem(String identify, String pass); // 회원탈퇴
 
-	public int findIdentify(String identify);// 아이디가 이미 존재하는지 검색
+	public int findIdentify(String identify);// 아이디가 이미 존재하는지 검
 
+	public String selectId(String id1);
+	
+
+
+	
 }
