@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+<script type="text/javascript" src="ajax.js"></script>
+return val = re
+	
+
+	let xhtp = new XMLHttpRequest();
+	xhtp.open('get', '../studentList.json');
+	xhtp.send();
+	xhtp.onload = function() {
+	console.log('xmlhttprequest')
+	console.log(xhtp.responseText)
+	
+	let xhpt2 = new XMLHttpREquest()P
+	
+	}
+	
+	fetch('../studentList.json')
+	.then(function(result) {
+	let val = result.json(); // stream ->json(), text()
+	console.log(val);
+	return val;
+	})
+	.then(function(result) {
+	console.log(result);
+	})
+	.catch(function (error) {
+	console.log(error);
+	
+	})
+
+</script>
+
+</body>
+</html>
