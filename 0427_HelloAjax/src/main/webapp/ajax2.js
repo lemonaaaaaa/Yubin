@@ -7,16 +7,16 @@
  }      )
  val -= 1;
  if (val> 0) {
- resolve ( 'succecs,  ' + cal);
+ resolve ( 'succecs' + cal);
  }else {
  reject('error');
  }
  });
  
  promise.them((result1 =  {
- return new Promise((nesolve, requet){
+ return new Promise((resolve, request){
  		val -= 2
  		result1('success',val);
  		}else{
- 		regerft2('error''')}
+ 		reject('error')};
  })

@@ -27,7 +27,7 @@ promise.then(result)
 promise.then(result)
 }');
 promise.then(err)
-}');
+});
 
 
 let success = true;
