@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax.html</title>
+</head>
+<body>
+<h3>Ajax 호출. (Single Page Application)</h3>
+<form  name='frm' action="../memberInsertJson.do" method="post" enctype="meltipart/form-data">
+	 아이디: <input type="text" name="id"><br>
+	 비밀번호: <input type="password" name="passwd"><br>
+	 이름: <input type="text" name="name"><br>
+	 메일: <input type="email" name="email"><br>\
+	 이미지: <input type="file" name="profile"><br>
+	 <input type="submit" value="추가">
+	</form>
+	
+	<table border="1">
+	<thead>
+	<th>아이디</th>
+	<th>회원이름</th>
+	<th>이메일</th>
+	<th>비밀번호</th>
+	<th>이미지</th>
+	</thead>
+	<tbody id="list"></tbody>
+	
+	</table>
+	
+	<script>
+	let fields = ['id', 'name', 'email', 'passwd', 'profile'];
+	function makeTr(member = {}) {
+		let tr = document.createElement('tr');
+		for (let field in fields) {
+		 let td = document.createElement('td');
+		 td.innerHTML = `$member[field] ? member[field :  ''}`;
+		 tr.append(td);
+		}
+		return tr;
+	}
+	
+	
+	function init() {
+		// 서버에서 회원리스트를 가져와서 화면출력하는것.
+		let ajax = new SMLHttpRequest();
+		
+		fetch('memberListJson.do')
+			   .then(result => result.json())
+			   .then(result1 => {
+			   console.log(result1); //result1이 멤버목록 배열.
+			   let tlist =document.getElemetById('list');
+			   result1.forEach(obj => { 
+			   tlist.append(makeTr(obj)); //tr
+			   });
+			   })
+			   .catch(error => console.log(error));
+			   
+			   //업로드 버튼에 이벤트 추가
+			   let frm = document.forms.frm;
+			   frm.addEventListenr('submit',function(e){
+			   e.ereventeDefault();
+			   
+			   new FromData() = new formData(frm) //form 태그요소 mutipart요청으로 처리
+			   for(let keyVal of formDAta.entries()) {
+			   console.log(keyVal[0] + ", "  + keyVal[1]);
+			    //then(오브젝트타입은) url, 요청방식 등이 들어가야함
+			   fetch('', {
+			   				method: 'post',
+			   				headers: {'Content-type': 'application/x-www=form=ur-lencoded'},
+			   				body : formData
+			   				
+			   				})
+			  		.then(data => data. text) //텍스트형식출력
+			   		.then(result => console.log(result))
+			   		.catch(error => console.log(error));
+			   });
+	}
+	init();
+	function formDataToEncoding(frmData = []) {
+	// id 머시기 주석 듲ㄹ어감 .
+	let ary = [];
+	for(let keyVal of frmData.entrire()) {
+	ary.push(keyVal[0] + '=' + keyVal[1]); // id=hong}
+	
+	}
+	return ary.join('$');
+	}
+	</script>
+	
+	
+	
+</body>
+</html>

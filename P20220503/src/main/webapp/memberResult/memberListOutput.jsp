@@ -25,7 +25,11 @@
 					</tr>
 				<tbody>
 					<c:forEach items="${all }" var="member">
-					<tr><td>${member.id }</td><td>${member.name }</td><td>${member.email }</td><td>${member.passwd }</td></tr>
+					<tr><td>${member.id }</td><td>${member.name }</td><td>${member.email }</td><td>${member.passwd }</td><td><img src="${pageContext.servletContext.contextPath }/upload/${member.profile }"> </td></tr>
+					<c:if test= "${!empty member.profile } ">
+					<img width="70px" src= "${pageContext.servletContext.contextPath}">
+					</c:if>	
+				
 					</c:forEach>
 				</tbody>
 			</table>
