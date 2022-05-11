@@ -17,6 +17,7 @@ public class MemberSearchControl implements Control {
 		String job = request.getParameter("job");
 		
 		String path = "";
+		if(job.equals("search")) {
 			path="memberView/memberSearch.jsp";
 		} else if(job.equals("update")) {
 			path="memberView/memberUpdate.jsp";
