@@ -9,7 +9,7 @@ public class BaseballOracle extends DAO implements BaseballService {
 		return logined;
 	}
 
-	@Override
+.	@Override
 	public void postAPost(BaseballGall baseball) {// 입력
 		conn = getConnect(); // 작성자 자동입력
 
